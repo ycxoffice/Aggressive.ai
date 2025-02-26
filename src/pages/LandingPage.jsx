@@ -9,6 +9,7 @@ import {
   BarChart3,
   Rocket,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const AggressiveAILanding = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -159,10 +160,10 @@ const AggressiveAILanding = () => {
               comprehensive AI-powered database.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-md font-medium text-lg transition-colors flex items-center justify-center">
+              <Link to={'/CompanyList'} className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-md font-medium text-lg transition-colors flex items-center justify-center">
                 Access Database
                 <ChevronRight className="ml-2 h-5 w-5" />
-              </button>
+              </Link>
               <button className="bg-transparent border border-gray-700 hover:border-gray-500 text-white px-8 py-4 rounded-md font-medium text-lg transition-colors">
                 See Demo
               </button>
