@@ -62,90 +62,8 @@ const AggressiveAILanding = () => {
               <span className="text-red-500">AGGRESSIVE</span>.AI
             </span>
           </div>
-
-          <div className="hidden md:flex items-center space-x-8">
-            <a
-              href="#"
-              className="text-gray-300 hover:text-white transition-colors"
-            >
-              Database
-            </a>
-            <a
-              href="#"
-              className="text-gray-300 hover:text-white transition-colors"
-            >
-              Sales
-            </a>
-            <a
-              href="#"
-              className="text-gray-300 hover:text-white transition-colors"
-            >
-              Marketing
-            </a>
-            <a
-              href="#"
-              className="text-gray-300 hover:text-white transition-colors"
-            >
-              Lead Gen
-            </a>
-            <a
-              href="#"
-              className="text-gray-300 hover:text-white transition-colors"
-            >
-              Growth
-            </a>
-          </div>
-
-          <div className="flex items-center space-x-4">
-            <button className="p-2 rounded-full hover:bg-gray-800 transition-colors">
-              <Search className="h-5 w-5 text-gray-300" />
-            </button>
-            <button className="hidden md:flex items-center bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md font-medium transition-colors">
-              Get Access
-            </button>
-            <button
-              onClick={() => setMenuOpen(true)}
-              className="md:hidden p-2 rounded-full hover:bg-gray-800 transition-colors"
-            >
-              <Menu className="h-6 w-6" />
-            </button>
-          </div>
         </div>
       </nav>
-
-      {/* Mobile Menu */}
-      {menuOpen && (
-        <div className="fixed inset-0 z-50 bg-black bg-opacity-95 flex flex-col">
-          <div className="flex justify-between items-center p-6">
-            <span className="text-xl font-bold">
-              <span className="text-red-500">AGGRESSIVE</span>.AI
-            </span>
-            <button onClick={() => setMenuOpen(false)} className="p-2">
-              <X className="h-6 w-6" />
-            </button>
-          </div>
-          <div className="flex flex-col space-y-6 p-6 text-lg">
-            <a href="#" className="py-2 border-b border-gray-800">
-              Database
-            </a>
-            <a href="#" className="py-2 border-b border-gray-800">
-              Sales
-            </a>
-            <a href="#" className="py-2 border-b border-gray-800">
-              Marketing
-            </a>
-            <a href="#" className="py-2 border-b border-gray-800">
-              Lead Generation
-            </a>
-            <a href="#" className="py-2 border-b border-gray-800">
-              Growth
-            </a>
-            <button className="mt-6 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-md font-medium transition-colors">
-              Get Access
-            </button>
-          </div>
-        </div>
-      )}
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 px-6">
@@ -160,13 +78,13 @@ const AggressiveAILanding = () => {
               comprehensive AI-powered database.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link to={'/CompanyList'} className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-md font-medium text-lg transition-colors flex items-center justify-center">
+              <Link
+                to={"/CompanyList"}
+                className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-md font-medium text-lg transition-colors flex items-center justify-center"
+              >
                 Access Database
                 <ChevronRight className="ml-2 h-5 w-5" />
               </Link>
-              <button className="bg-transparent border border-gray-700 hover:border-gray-500 text-white px-8 py-4 rounded-md font-medium text-lg transition-colors">
-                See Demo
-              </button>
             </div>
 
             <div className="mt-12 flex flex-wrap gap-x-12 gap-y-4 text-sm text-gray-400">
@@ -245,64 +163,6 @@ const AggressiveAILanding = () => {
               Find exactly what you need with our advanced filtering system.
               Search by industry, size, location, and growth metrics.
             </p>
-          </div>
-
-          <div className="relative max-w-4xl mx-auto">
-            <div className="bg-gray-900 bg-opacity-70 backdrop-blur-md border border-gray-800 rounded-xl p-6 md:p-8">
-              <div className="flex items-center bg-gray-800 rounded-lg px-4 py-3 mb-6">
-                <Search className="h-5 w-5 text-gray-400 mr-3" />
-                <input
-                  type="text"
-                  placeholder="Search for companies by name, industry, or technology..."
-                  className="bg-transparent border-0 outline-none text-white flex-1"
-                  defaultValue="AI-powered sales automation"
-                />
-              </div>
-
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-                <div>
-                  <label className="block text-sm text-gray-400 mb-1">
-                    Industry
-                  </label>
-                  <select className="w-full bg-gray-800 border border-gray-700 rounded-md px-3 py-2 text-white">
-                    <option>All Industries</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm text-gray-400 mb-1">
-                    Company Size
-                  </label>
-                  <select className="w-full bg-gray-800 border border-gray-700 rounded-md px-3 py-2 text-white">
-                    <option>Any Size</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm text-gray-400 mb-1">
-                    Growth Rate
-                  </label>
-                  <select className="w-full bg-gray-800 border border-gray-700 rounded-md px-3 py-2 text-white">
-                    <option>All Rates</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-sm text-gray-400 mb-1">
-                    Technology
-                  </label>
-                  <select className="w-full bg-gray-800 border border-gray-700 rounded-md px-3 py-2 text-white">
-                    <option>All Tech</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="flex justify-center">
-                <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-md font-medium transition-colors">
-                  Search Database
-                </button>
-              </div>
-            </div>
-
-            {/* Floating "results" preview */}
-            <div className="absolute -bottom-16 -right-8 -left-8 h-32 bg-gradient-to-b from-gray-900 to-transparent rounded-xl opacity-50"></div>
           </div>
         </div>
       </section>

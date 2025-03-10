@@ -54,7 +54,6 @@ function CompanyData() {
     fetchData();
   }, [companyName]);
 
-  
   if (loading)
     return (
       <div className="flex justify-center items-center h-screen bg-black">
@@ -114,8 +113,8 @@ function CompanyData() {
 
   if (!company) return null;
 
-   // New attribute groups
-   const generalInfo = [
+  // New attribute groups
+  const generalInfo = [
     "Industry",
     "Headquarters",
     "Founding Year",
@@ -249,8 +248,18 @@ function CompanyData() {
               <div className="bg-gradient-to-r from-orange-800/60 to-red-800/60 p-6 rounded-2xl border border-gray-700/50 backdrop-blur-sm transition-colors duration-300">
                 <h2 className="text-xl font-semibold text-white mb-5 flex items-center">
                   <div className="bg-gray-700/50 p-1.5 rounded-lg mr-3">
-                    <svg className="w-5 h-5 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                    <svg
+                      className="w-5 h-5 text-orange-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                      />
                     </svg>
                   </div>
                   General Information
@@ -260,8 +269,12 @@ function CompanyData() {
                     (key) =>
                       company[key] && (
                         <div key={key} className="flex flex-col">
-                          <span className="text-gray-400 text-sm font-medium mb-1">{key}</span>
-                          <span className="text-white font-medium text-lg">{company[key]}</span>
+                          <span className="text-gray-400 text-sm font-medium mb-1">
+                            {key}
+                          </span>
+                          <span className="text-white font-medium text-lg">
+                            {company[key]}
+                          </span>
                         </div>
                       )
                   )}
@@ -271,8 +284,18 @@ function CompanyData() {
               <div className="bg-gradient-to-r from-orange-800/60 to-red-800/60 p-6 rounded-2xl border border-gray-700/50 backdrop-blur-sm transition-colors duration-300">
                 <h2 className="text-xl font-semibold text-white mb-5 flex items-center">
                   <div className="bg-gray-700/50 p-1.5 rounded-lg mr-3">
-                    <svg className="w-5 h-5 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                    <svg
+                      className="w-5 h-5 text-orange-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+                      />
                     </svg>
                   </div>
                   Financial Information
@@ -282,9 +305,12 @@ function CompanyData() {
                     (key) =>
                       company[key] && (
                         <div key={key} className="flex flex-col">
-                          <span className="text-gray-400 text-sm font-medium mb-1">{key}</span>
+                          <span className="text-gray-400 text-sm font-medium mb-1">
+                            {key}
+                          </span>
                           <span className="text-white font-medium text-lg">
-                            {typeof company[key] === "string" && company[key].includes("$")
+                            {typeof company[key] === "string" &&
+                            company[key].includes("$")
                               ? company[key]
                               : `$${company[key]}`}
                           </span>
@@ -293,12 +319,21 @@ function CompanyData() {
                   )}
                 </div>
               </div>
-              {/* People & Contacts */}
               <div className="bg-gradient-to-r from-orange-800/60 to-red-800/60 p-6 rounded-2xl border border-gray-700/50 backdrop-blur-sm transition-colors duration-300">
                 <h2 className="text-xl font-semibold text-white mb-5 flex items-center">
                   <div className="bg-gray-700/50 p-1.5 rounded-lg mr-3">
-                    <svg className="w-5 h-5 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                    <svg
+                      className="w-5 h-5 text-orange-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                      />
                     </svg>
                   </div>
                   People & Contacts
@@ -308,23 +343,29 @@ function CompanyData() {
                     (key) =>
                       company[key] && (
                         <div key={key} className="flex flex-col">
-                          <span className="text-gray-400 text-sm font-medium mb-2">{key}</span>
+                          <span className="text-gray-400 text-sm font-medium mb-2">
+                            {key}
+                          </span>
                           <span className="text-white">
-                            {key === "Founders & LinkedIn URLs" &&
-                            company[key].includes("LinkedIn:")
-                              ? (
-                                <div
-                                  dangerouslySetInnerHTML={{
-                                    __html: company[key].replace(
-                                      /(https:\/\/www\.linkedin\.com\/[^\s,]+)/g,
-                                      '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-emerald-400 hover:text-emerald-300 transition-colors hover:underline">LinkedIn Profile</a>'
-                                    ),
-                                  }}
-                                />
-                              )
-                              : (
-                                company[key]
-                              )}
+                            {company[key].split(/(\s+)/).map((part, index) => {
+                              const urlMatch =
+                                part.match(/(https?:\/\/[^\s,]+)/);
+                              if (urlMatch) {
+                                const url = urlMatch[0];
+                                return (
+                                  <a
+                                    key={index}
+                                    href={url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-orange-400 hover:text-orange-300 transition-colors hover:underline"
+                                  >
+                                    {url}
+                                  </a>
+                                );
+                              }
+                              return <span key={index}>{part}</span>;
+                            })}
                           </span>
                         </div>
                       )
@@ -338,8 +379,18 @@ function CompanyData() {
               <div className="bg-gradient-to-r from-orange-800/60 to-red-800/60 p-6 rounded-2xl border border-gray-700/50 backdrop-blur-sm transition-colors duration-300">
                 <h2 className="text-xl font-semibold text-white mb-5 flex items-center">
                   <div className="bg-gray-700/50 p-1.5 rounded-lg mr-3">
-                    <svg className="w-5 h-5 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                    <svg
+                      className="w-5 h-5 text-orange-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                      />
                     </svg>
                   </div>
                   Marketing & Growth
@@ -349,8 +400,12 @@ function CompanyData() {
                     (key) =>
                       company[key] && (
                         <div key={key} className="flex flex-col">
-                          <span className="text-gray-400 text-sm font-medium mb-1">{key}</span>
-                          <span className="text-white font-medium text-lg">{company[key]}</span>
+                          <span className="text-gray-400 text-sm font-medium mb-1">
+                            {key}
+                          </span>
+                          <span className="text-white font-medium text-lg">
+                            {company[key]}
+                          </span>
                         </div>
                       )
                   )}

@@ -31,18 +31,14 @@ function CompanyList() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Google Sheets API endpoint using sheet ID and tab ID
         const sheetId = "1g70_RLISMBOymvgCMMAtWZXDAMupNClP9d2o4ofet5k";
         const tabId = "1616601252";
         const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&gid=${tabId}`;
 
         const response = await fetch(url);
         const text = await response.text();
-
-        // Parse the JSON-like response from Google Sheets
         const jsonData = JSON.parse(text.substring(47).slice(0, -2));
 
-        // Extract column headers and company data
         const headers = jsonData.table.cols.map((col) => col.label);
         const rows = jsonData.table.rows.map((row) => {
           const company = {};
@@ -66,11 +62,12 @@ function CompanyList() {
     fetchData();
   }, []);
 
-    const [isVisible, setIsVisible] = useState(false);
-  
-    useEffect(() => {
-      setIsVisible(true);
-    }, []);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
   // Get unique exchanges and sectors for filters
   const exchanges = [
     ...new Set(companies.map((company) => company["Exchange"] || "")),
@@ -95,17 +92,17 @@ function CompanyList() {
 
     return matchesSearch && matchesExchange && matchesSector;
   });
-  
-    const [menuOpen, setMenuOpen] = useState(false);
-    const [scrolled, setScrolled] = useState(false);
-  
-    useEffect(() => {
-      const handleScroll = () => {
-        setScrolled(window.scrollY > 20);
-      };
-      window.addEventListener("scroll", handleScroll);
-      return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   if (loading)
     return (
@@ -141,90 +138,8 @@ function CompanyList() {
               <span className="text-red-500">AGGRESSIVE</span>.AI
             </span>
           </div>
-
-          <div className="hidden md:flex items-center space-x-8">
-            <a
-              href="#"
-              className="text-gray-300 hover:text-white transition-colors"
-            >
-              Database
-            </a>
-            <a
-              href="#"
-              className="text-gray-300 hover:text-white transition-colors"
-            >
-              Sales
-            </a>
-            <a
-              href="#"
-              className="text-gray-300 hover:text-white transition-colors"
-            >
-              Marketing
-            </a>
-            <a
-              href="#"
-              className="text-gray-300 hover:text-white transition-colors"
-            >
-              Lead Gen
-            </a>
-            <a
-              href="#"
-              className="text-gray-300 hover:text-white transition-colors"
-            >
-              Growth
-            </a>
-          </div>
-
-          <div className="flex items-center space-x-4">
-            <button className="p-2 rounded-full hover:bg-gray-800 transition-colors">
-              <Search className="h-5 w-5 text-gray-300" />
-            </button>
-            <button className="hidden md:flex items-center bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md font-medium transition-colors">
-              Get Access
-            </button>
-            <button
-              onClick={() => setMenuOpen(true)}
-              className="md:hidden p-2 rounded-full hover:bg-gray-800 transition-colors"
-            >
-              <Menu className="h-6 w-6" />
-            </button>
-          </div>
         </div>
       </nav>
-
-      {/* Mobile Menu */}
-      {menuOpen && (
-        <div className="fixed inset-0 z-50 bg-black bg-opacity-95 flex flex-col">
-          <div className="flex justify-between items-center p-6">
-            <span className="text-xl font-bold">
-              <span className="text-red-500">AGGRESSIVE</span>.AI
-            </span>
-            <button onClick={() => setMenuOpen(false)} className="p-2">
-              <X className="h-6 w-6" />
-            </button>
-          </div>
-          <div className="flex flex-col space-y-6 p-6 text-lg">
-            <a href="#" className="py-2 border-b border-gray-800">
-              Database
-            </a>
-            <a href="#" className="py-2 border-b border-gray-800">
-              Sales
-            </a>
-            <a href="#" className="py-2 border-b border-gray-800">
-              Marketing
-            </a>
-            <a href="#" className="py-2 border-b border-gray-800">
-              Lead Generation
-            </a>
-            <a href="#" className="py-2 border-b border-gray-800">
-              Growth
-            </a>
-            <button className="mt-6 bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-md font-medium transition-colors">
-              Get Access
-            </button>
-          </div>
-        </div>
-      )}
 
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 px-6">
@@ -238,7 +153,6 @@ function CompanyList() {
               Track, analyze, and dominate your competition with the most
               comprehensive AI-powered database.
             </p>
-          
 
             <div className="mt-12 flex flex-wrap gap-x-12 gap-y-4 text-sm text-gray-400">
               <div className="flex items-center">
@@ -257,8 +171,24 @@ function CompanyList() {
           </div>
         </div>
       </section>
+
       {/* Company Cards */}
       <div className="container mx-auto px-4 py-8 relative">
+        {/* Search Bar */}
+        <div className="relative max-w-2xl mx-auto mb-12">
+          <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg blur opacity-50"></div>
+          <div className="relative bg-gray-900/80 backdrop-blur-xl rounded-lg flex items-center p-2 border border-orange-500/30">
+            <Search className="w-6 h-6 text-orange-400 ml-2" />
+            <input
+              type="text"
+              placeholder="Search companies, industries, or headquarters..."
+              className="w-full bg-transparent border-0 focus:ring-0 text-white px-4 py-2 placeholder-gray-500"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+        </div>
+
         <div className="flex items-center justify-between mb-8">
           <h2 className="text-2xl font-bold text-white flex items-center">
             <List className="h-5 w-5 mr-2 text-orange-500" />
@@ -306,7 +236,7 @@ function CompanyList() {
         {filteredCompanies.length === 0 ? (
           <div className="flex flex-col items-center justify-center p-16 bg-gray-900/50 rounded-lg border border-gray-800">
             <div className="p-4 bg-gray-800 rounded-full mb-4">
-              <Search className="h-8 w-8 text-gray-400" />
+              <Search className="h-8 w-8 text-orange-400" />
             </div>
             <p className="text-gray-400 text-lg mb-2">
               No companies match your search criteria
@@ -364,11 +294,6 @@ function CompanyList() {
                             <Tag className="h-3 w-3 mr-1" />
                             {company["Industry"] || "N/A"}
                           </div>
-                          {company["Exchange"] && (
-                            <div className="bg-gray-700 text-xs py-0.5 px-2 rounded text-gray-300">
-                              {company["Exchange"]}
-                            </div>
-                          )}
                         </div>
                       </div>
                     </div>
@@ -414,7 +339,10 @@ function CompanyList() {
                           className="text-sm text-blue-400 hover:text-blue-300 transition-colors truncate"
                           onClick={(e) => e.stopPropagation()}
                         >
-                          {company["Website"]?.replace(/^https?:\/\/(www\.)?/, "") || "N/A"}
+                          {company["Website"]?.replace(
+                            /^https?:\/\/(www\.)?/,
+                            ""
+                          ) || "N/A"}
                         </a>
                       </div>
                     </div>
@@ -453,143 +381,6 @@ function CompanyList() {
             ))}
           </div>
         )}
-      </div>
-
-      {/* Features Section */}
-      <div className="py-20 mt-12 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/api/placeholder/1000/1000')] opacity-5 bg-fixed"></div>
-        <div className="absolute top-0 right-0 w-96 h-96 bg-orange-500 rounded-full filter blur-[150px] opacity-10"></div>
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500 rounded-full filter blur-[150px] opacity-5"></div>
-
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center bg-orange-500/10 border border-orange-500/20 px-3 py-1 rounded-full text-orange-400 text-xs font-medium mb-4">
-              <BarChart2 className="h-3 w-3 mr-1" />
-              AI-Powered Analysis
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
-              Small Cap, Big Data
-            </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
-              Our proprietary algorithms analyze thousands of data points to
-              identify high-potential small cap companies before they hit the
-              mainstream.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-xl border border-gray-700 backdrop-blur-sm relative group hover:border-orange-500/50 transition-all">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-orange-500 rounded-full filter blur-[80px] opacity-10 group-hover:opacity-20 transition-opacity"></div>
-
-              <div className="bg-gray-700 p-3 rounded-lg inline-flex mb-6 group-hover:bg-orange-500 group-hover:text-black transition-colors">
-                <List className="h-6 w-6" />
-              </div>
-              <h3 className="text-xl font-bold mb-4 group-hover:text-orange-400 transition-colors">
-                Market Analytics
-              </h3>
-              <p className="text-gray-400">
-                Real-time valuation tracking and market performance metrics to
-                keep you informed of every market movement.
-              </p>
-              <div className="mt-6 pt-6 border-t border-gray-700">
-                <a
-                  href="#"
-                  className="text-sm text-orange-400 hover:text-orange-300 flex items-center"
-                >
-                  Learn more
-                  <svg
-                    className="ml-1 w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M13 7l5 5m0 0l-5 5m5-5H6"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-xl border border-gray-700 backdrop-blur-sm relative group hover:border-orange-500/50 transition-all">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-orange-500 rounded-full filter blur-[80px] opacity-10 group-hover:opacity-20 transition-opacity"></div>
-
-              <div className="bg-gray-700 p-3 rounded-lg inline-flex mb-6 group-hover:bg-orange-500 group-hover:text-black transition-colors">
-                <TrendingUp className="h-6 w-6" />
-              </div>
-              <h3 className="text-xl font-bold mb-4 group-hover:text-orange-400 transition-colors">
-                Growth Scoring
-              </h3>
-              <p className="text-gray-400">
-                Proprietary AI-driven growth potential scoring system that
-                predicts future market performance with remarkable accuracy.
-              </p>
-              <div className="mt-6 pt-6 border-t border-gray-700">
-                <a
-                  href="#"
-                  className="text-sm text-orange-400 hover:text-orange-300 flex items-center"
-                >
-                  Learn more
-                  <svg
-                    className="ml-1 w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M13 7l5 5m0 0l-5 5m5-5H6"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </div>
-
-            <div className="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-xl border border-gray-700 backdrop-blur-sm relative group hover:border-orange-500/50 transition-all">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-orange-500 rounded-full filter blur-[80px] opacity-10 group-hover:opacity-20 transition-opacity"></div>
-
-              <div className="bg-gray-700 p-3 rounded-lg inline-flex mb-6 group-hover:bg-orange-500 group-hover:text-black transition-colors">
-                <AlertTriangle className="h-6 w-6" />
-              </div>
-              <h3 className="text-xl font-bold mb-4 group-hover:text-orange-400 transition-colors">
-                Risk Assessment
-              </h3>
-              <p className="text-gray-400">
-                Comprehensive risk level evaluation and volatility metrics to
-                help you make informed investment decisions.
-              </p>
-              <div className="mt-6 pt-6 border-t border-gray-700">
-                <a
-                  href="#"
-                  className="text-sm text-orange-400 hover:text-orange-300 flex items-center"
-                >
-                  Learn more
-                  <svg
-                    className="ml-1 w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M13 7l5 5m0 0l-5 5m5-5H6"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );
